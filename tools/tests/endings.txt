@@ -1,0 +1,28 @@
+w:2500
+k:KeyZ
+w:1200
+k:KeyZ
+w:1500
+f
+a:40
+# ---- DRIFT ending (refuse, pages<4)
+j:(()=>{Game.reset(); for (const id of ['wren','bramble','pip','moth']) Game.members[id]=newMember(id,14); Game.party=['wren','bramble','pip','moth']; Game.pages=2; ENEMIES.boss_blank.hp=320; ENEMIES.boss_blank.def=30; Scenes.replace(new MapScene('blank',33.5,14.5,'up')); return 'ok'})()
+w:1500
+j:T.clear()
+k:KeyZ
+w:400
+c:Go through
+d:80
+u:Scenes.top().constructor.name==='BattleScene'
+w:2500
+s:80_final_battle
+b
+c:No.
+w:500
+b
+a:40
+u:Scenes.top().constructor.name==='EndingScene'
+w:3500
+s:74_drift
+j:Scenes.top().which
+e

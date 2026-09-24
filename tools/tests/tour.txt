@@ -1,0 +1,63 @@
+w:2500
+k:KeyZ
+w:1500
+s:90_title
+k:KeyZ
+w:1500
+f
+a:40
+s:91_bedroom
+h:ArrowUp:500
+h:ArrowLeft:450
+k:KeyZ
+w:400
+k:KeyZ
+w:2500
+s:92_card
+a:60
+h:ArrowRight:1200
+w:300
+a:60
+j:T.clear()
+s:93_meadow
+j:T.place(22,21,'up')
+w:300
+s:94_dot
+j:(()=>{const m=Scenes.top(); m.startBattle(m.entities.find(e=>e.id==='boss')); return 'boss'})()
+w:3200
+s:95_boss_scribble
+k:KeyX
+j:(()=>{Scenes.stack.length=1; Scenes.stack[0].locked=false; Scenes.fade.a=0; Game.set('scribble_beaten'); Game.set('interlude1_done'); for (const id of ['pip','moth']) { Game.members[id]=newMember(id,5); Game.party.push(id);} Scenes.replace(new MapScene('woods',14,13,'right')); return 'woods'})()
+w:1500
+j:T.clear()
+s:96_woods
+j:Scenes.replace(new MapScene('marsh',8,14,'right'))+''
+w:1500
+j:T.clear()
+s:97_marsh
+j:Scenes.replace(new MapScene('marsh',30,10,'right'))+''
+w:1500
+j:T.clear()
+s:98_lighthouse
+j:Scenes.replace(new MapScene('blank',12,12,'right'))+''
+w:1500
+j:T.clear()
+s:99_blank
+j:Scenes.replace(new MapScene('kitchen',8,5,'down'))+''
+w:1500
+s:100_kitchen
+j:(()=>{Game.set('interlude2_done'); Scenes.replace(new MapScene('porch',8,5,'down')); return 'p'})()
+w:1500
+s:101_porch
+j:(()=>{Scenes.replace(new MapScene('marsh',30,12,'up')); return 'm'})()
+w:1500
+j:(()=>{const m=Scenes.top(); m.run(async s=>{ await s.battle('boss_waspqueen',{bg:'bg_marsh',bgm:'boss',boss:true,canRun:false}); }); return 'wq'})()
+w:3200
+s:102_boss_wasp
+k:KeyZ
+w:300
+k:ArrowDown
+k:KeyZ
+w:500
+s:103_skills4
+e

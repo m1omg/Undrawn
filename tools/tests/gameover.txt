@@ -1,0 +1,18 @@
+w:2500
+k:KeyZ
+w:1200
+k:KeyZ
+w:1500
+f
+a:40
+j:(()=>{ENEMIES.scribblebunny.acts=[{name:'Hop',w:1,power:9,msg:'{e} hops on {t}!'}]; ENEMIES.scribblebunny.hp=9999; Game.members.wren.hp=1; Scenes.replace(new MapScene('meadow',14,17,'up')); return 'ok'})()
+w:1500
+j:(()=>{const m=Scenes.top(); m.startBattle(m.entities.find(e=>e.id==='e1')); return 'go'})()
+w:2500
+b
+w:6000
+j:Scenes.top().constructor.name
+k:KeyZ
+w:2500
+j:Scenes.top().constructor.name
+e

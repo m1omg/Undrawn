@@ -1,0 +1,30 @@
+w:2500
+k:KeyZ
+w:1200
+k:KeyZ
+w:1500
+f
+a:40
+h:ArrowUp:500
+h:ArrowLeft:450
+k:KeyZ
+w:400
+k:KeyZ
+w:1500
+a:60
+h:ArrowRight:1200
+w:300
+a:60
+j:T.clear()
+j:T.weaken('boss_scribble',8)
+j:(()=>{const m=Scenes.top(); m.startBattle(m.entities.find(e=>e.id==='boss')); return 'boss'})()
+w:2500
+k:KeyZ
+w:300
+k:KeyZ
+w:4000
+a:40
+j:T.place(20,3,'up')
+h:ArrowUp:600
+w:300
+j:(()=>{const m=Scenes.stack[0]; const t=m.entities.find(e=>e.id==='after_boss'); const b=m.entities.find(e=>e.id==='boss'); return JSON.stringify({p:[m.player.x,m.player.y],trig:t&&{x:t.x,y:t.y,dead:t.dead,cond:t.cond&&t.cond()},boss:b&&{dead:b.dead,solid:b.solid,x:b.x,y:b.y},locked:m.locked,top:Scenes.top().constructor.name,solidAbove:m.tileSolid(m.player.x,m.player.y-40)})})()

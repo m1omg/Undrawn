@@ -1,0 +1,78 @@
+w:2500
+k:KeyZ
+w:1200
+k:KeyZ
+w:1500
+s:80_title
+f
+a:40
+j:(()=>{Game.reset(); for (const id of ['wren','bramble','pip','moth']) Game.members[id]=newMember(id,6); Game.party=['wren','bramble','pip','moth']; Game.addItem('cookie',3); Game.addItem('crayon',2); Game.smudge=100; ENEMIES.crumpledowl.hp=400; ENEMIES.crumpledowl.acts=[{name:'Peck',w:1,power:0.6,msg:'{e} pecks {t}!'}]; Scenes.replace(new MapScene('woods',22,21,'up')); return 'ok'})()
+w:1500
+j:T.clear()
+j:(()=>{const m=Scenes.top(); const e=new Entity({type:'enemy',id:'owl',sprite:'crumpledowl',x:22,y:19,group:'woods_c',h:1.3},m); m.entities.push(e); m.startBattle(e); return 'go'})()
+w:2800
+s:81_doodle_ready
+k:ArrowUp
+w:200
+s:82_doodle_sel
+k:KeyZ
+w:400
+s:83_doodle_target
+k:KeyZ
+w:5000
+s:84_doodle_done
+j:JSON.stringify({smudge:Game.smudge, msgs:Scenes.top().msgs, ehp:Scenes.top().enemies.map(e=>e.hp)})
+# bramble attack -> follow-up prompt (need smudge>=25)
+j:(()=>{Game.smudge=60; return Game.smudge})()
+k:KeyZ
+w:400
+k:KeyZ
+w:2200
+s:85_followup
+j:JSON.stringify({stage:Scenes.top().menu&&Scenes.top().menu.stage, msgs:Scenes.top().msgs})
+k:KeyZ
+w:4000
+s:86_after_follow
+j:JSON.stringify({smudge:Game.smudge, msgs:Scenes.top().msgs, ehp:Scenes.top().enemies.map(e=>e.hp)})
+# pip: item
+k:ArrowDown
+k:ArrowDown
+k:ArrowDown
+w:200
+k:KeyZ
+w:400
+s:87_items
+k:KeyZ
+w:400
+k:KeyZ
+w:3000
+j:JSON.stringify({items:Game.items, msgs:Scenes.top().msgs})
+# moth: skill lullaby (2nd)
+k:ArrowDown
+w:100
+k:KeyZ
+w:300
+k:ArrowDown
+w:100
+k:KeyZ
+w:4000
+s:88_lullaby
+j:JSON.stringify({moods:Scenes.top().enemies.map(e=>e.mood), msgs:Scenes.top().msgs})
+# talk
+j:(()=>{ENEMIES.crumpledowl.hp=1; Scenes.top().enemies[0].hp=1; return 1})()
+k:ArrowDown
+k:ArrowDown
+w:100
+k:KeyZ
+w:300
+k:KeyZ
+w:5000
+s:89_talk
+j:JSON.stringify({msgs:Scenes.top().msgs})
+k:KeyZ
+w:400
+k:KeyZ
+w:6000
+s:90_win
+j:JSON.stringify({top:Scenes.top().constructor.name, lv:Game.members.wren.level, xp:Game.members.wren.xp, msgs:Scenes.top().msgs})
+e
