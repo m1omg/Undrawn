@@ -12,7 +12,7 @@ const errors = [];
 page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') errors.push(m.type() + ': ' + m.text()); });
 page.on('response', r => { if (r.status() >= 400) errors.push('HTTP ' + r.status() + ' ' + r.url()); });
 page.on('pageerror', e => errors.push('PAGEERROR: ' + e.message + '\n' + (e.stack || '').split('\n').slice(0, 3).join('\n')));
-await page.goto('http://127.0.0.1:8642/index.html'); await page.waitForTimeout(1500);
+await page.goto(process.env.URL || 'http://127.0.0.1:8642/index.html'); await page.waitForTimeout(1500);
 await page.evaluate(() => { window.__endings = []; const os = Game.set.bind(Game); Game.set = (k, v = true) => { if (String(k).startsWith('ending_')) window.__endings.push(k); return os(k, v); }; window.T = {
   place: (x, y, d) => { const m = Scenes.top(); m.player.x = (x + .5) * TILE; m.player.y = (y + .5) * TILE; m.player.dir = d ? d : 'down'; m.player.trail = []; return Game.map + ' ' + x + ',' + y; },
   clear: () => { const m = Scenes.stack.find(s => s.constructor.name === 'MapScene'); let n = 0; for (const e of m.entities) if (e.type === 'enemy' && !e.boss) { e.dead = true; n++; } return 'cleared ' + n; },
